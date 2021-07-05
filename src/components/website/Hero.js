@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 const Hero = (props) => {
   return (
     <section className="text-gray-600 body-font">
@@ -15,11 +17,13 @@ const Hero = (props) => {
             can now create a to-do list for entire team. The TooDo list.
           </p>
           <div className="flex justify-center">
-            <button
-              className={`inline-flex text-white bg-${props.theme}-500 border-0 py-2 px-6 focus:outline-none hover:bg-${props.theme}-600 rounded text-lg`}
-            >
-              Get started
-            </button>
+            <Link to="/login">
+              <button
+                className={`inline-flex text-white bg-${props.theme}-500 border-0 py-2 px-6 focus:outline-none hover:bg-${props.theme}-600 rounded text-lg`}
+              >
+                Get started
+              </button>
+            </Link>
             <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
               Watch demo
             </button>

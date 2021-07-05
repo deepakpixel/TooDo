@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Header = (props) => {
   return (
@@ -29,22 +30,24 @@ const Header = (props) => {
             Source Code
           </a>
         </nav>
-        <button
-          className={`inline-flex items-center bg-${props.theme}-500 border-0 py-1 px-3 focus:outline-none hover:bg-${props.theme}-600 rounded text-base text-white mt-4 md:mt-0`}
-        >
-          Login
-          <svg
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            className="w-4 h-4 ml-1"
-            viewBox="0 0 24 24"
+        <Link to={props.loggedIn ? '/dashboard' : '/login'}>
+          <button
+            className={`inline-flex items-center bg-${props.theme}-500 border-0 py-1 px-3 focus:outline-none hover:bg-${props.theme}-600 rounded text-base text-white mt-4 md:mt-0`}
           >
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </button>
+            {props.loggedIn ? 'Dashboard' : 'Login'}
+            <svg
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              className="w-4 h-4 ml-1"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </Link>
       </div>
     </header>
   );
