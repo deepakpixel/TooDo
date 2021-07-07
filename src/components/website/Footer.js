@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Footer = (props) => {
   return (
     <footer className={`text-gray-600 body-font bg-${props.theme}-100`}>
-      <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+      <div className="container px-5 py-4 mx-auto flex items-center sm:flex-row flex-col">
         <Link
           to="/"
           className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"

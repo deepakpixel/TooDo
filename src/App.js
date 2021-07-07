@@ -9,6 +9,7 @@ import NotFound from './components/NotFound';
 
 import Login from './components/dashboard/Login';
 import Signup from './components/dashboard/Signup';
+import Dashboard from './components/dashboard/Dashboard';
 
 import './css/style.css';
 
@@ -28,18 +29,25 @@ const App = () => {
             <Demo />
             <Contact />
           </Route>
+
           <Route path="/login">
             <Login setLoggedIn={setLoggedIn} />
             <Content />
             <Demo />
             <Contact />
           </Route>
+
           <Route path="/signup">
             <Signup />
             <Content />
             <Demo />
             <Contact />
           </Route>
+
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+
           <Route>
             <NotFound />
           </Route>

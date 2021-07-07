@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 
 const Login = (props) => {
@@ -11,6 +11,7 @@ const Login = (props) => {
   let logMeIn = () => {
     if (username === 'test' && password === 'test') {
       props.setLoggedIn(true);
+      useHistory.push('/dashboard');
     } else {
       swal(
         'Invalid credentials',
