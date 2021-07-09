@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 const Login = (props) => {
   let signMeUp = () => {
-    swal(
+    Swal.fire(
       "Doesn't support signups",
       'Please login using test credentials username=test password=test',
       'warning'

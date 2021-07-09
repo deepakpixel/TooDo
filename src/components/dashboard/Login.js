@@ -1,19 +1,21 @@
 import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 const Login = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  let history = useHistory();
 
   console.log(props);
   let logMeIn = () => {
+    // auth with server
     if (username === 'test' && password === 'test') {
       props.setLoggedIn(true);
-      useHistory.push('/dashboard');
+      history.push('/dashboard');
     } else {
-      swal(
+      Swal.fire(
         'Invalid credentials',
         'Username or password is incorrect',
         'warning'

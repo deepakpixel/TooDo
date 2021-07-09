@@ -1,0 +1,28 @@
+{
+  "lists": [
+    {
+      "listName": "Test toodo 1",
+      "description": "Desc 1",
+      "color": "green",
+      "createdAt": 1625829530112,
+      "id": 1
+    },
+    {
+      "listName": "Test 2",
+      "description": "ghdsagjhdgs",
+      "color": "blue",
+      "createdAt": 1625829540155,
+      "id": 2
+    },
+    {
+      "listName": "dsad",
+      "description": "sadsadsadsadsa",
+      "color": "purple",
+      "createdAt": 1625829547413,
+      "id": 3
+    }
+  ],
+  "profile": {
+    "name": "deepak"
+  }
+}

@@ -1,6 +1,6 @@
 import { useState, React } from 'react';
 import PropTypes from 'prop-types';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 const Content = (props) => {
   const [name, setName] = useState('');
@@ -36,7 +36,7 @@ const Content = (props) => {
 
     for (let key in tempState) {
       if (tempState[key]) {
-        swal(
+        Swal.fire(
           'Oops! Invalid details',
           'Please check the details again',
           'warning'

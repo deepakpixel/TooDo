@@ -1,74 +1,60 @@
-import ListName from './home/ListName';
-
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { useState } from 'react';
+import Home from './home/Home';
+import Loading from '../Loading';
+import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 const Dashboard = () => {
-  // fetch lists
-  let listsData = [
-    {
-      id: 1,
-      listName: 'Test todo list',
-      createdAt: Date.now(),
-      color: 'yellow',
-    },
-    {
-      id: 2,
-      listName: 'New project- Carnot',
-      createdAt: Date.now(),
-      color: 'purple',
-    },
-    { id: 3, listName: 'test', createdAt: Date.now(), color: 'green' },
-  ];
+  const [lists, setLists] = useState(null);
+  const [isPending, setIsPending] = useState(false);
+  const [activeList, setActiveList] = useState(null);
 
-  const [lists, setLists] = useState(listsData);
+  useEffect(() => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'bottom-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      },
+    });
 
-  const onDragEnd = (result) => {
-    // dropped outside the list
-    if (!result.destination) return;
+    async function main() {
+      setIsPending(true);
+      try {
+        let res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lists`);
 
-    const [start, end] = [result.source.index, result.destination.index];
+        if (!res.ok) throw Error('Request failed!');
+        res.data = await res.json();
 
-    if (start === end) return;
-    let tempLists = Array.from(lists);
-    const [removed] = tempLists.splice(start, 1);
-    tempLists.splice(end, 0, removed);
+        setLists(res.data);
+      } catch (error) {
+        Toast.fire({
+          icon: 'warning',
+          title: error.message || 'Unexpected error!',
+        });
+      }
+      setIsPending(false);
+    }
+    main();
+  }, []);
 
-    setLists(tempLists);
-    console.log(tempLists);
-  };
+  // useEffect(() => {
+  //   if (lists == null) return;
+  //   // Save to localstorage
+  //   window.localStorage.setItem('lists', JSON.stringify(lists));
+  //   return () => {
+  //     // cleanup function
+  //   };
+  // }, [lists]);
 
   return (
-    <>
-      <section className="select-none container px-5 py-8">
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="droppable">
-            {(provided) => (
-              <div {...provided.droppableProps} ref={provided.innerRef}>
-                {lists.map((list, index) => (
-                  <Draggable
-                    key={list.id}
-                    draggableId={list.id.toString()}
-                    index={index}
-                  >
-                    {(provided) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        <ListName list={list} key={Math.random()} />
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </section>
-    </>
+    <div className="min-h-screen">
+      {isPending && <Loading />}
+      {lists && <Home lists={lists} setLists={setLists} />}
+    </div>
   );
 };
 
