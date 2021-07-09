@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 const Dashboard = () => {
   const [lists, setLists] = useState(null);
   const [isPending, setIsPending] = useState(false);
-  const [activeList, setActiveList] = useState(null);
+  // const [activeList, setActiveList] = useState(null);
 
   useEffect(() => {
     const Toast = Swal.mixin({
