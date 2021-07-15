@@ -3,6 +3,7 @@
 .vscode
 /src/css/style.css
 .env
+db.json
 
 # dependencies
 /node_modules

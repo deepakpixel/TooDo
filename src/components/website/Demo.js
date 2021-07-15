@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Demo = (props) => {
   return (
@@ -14,7 +15,7 @@ const Demo = (props) => {
             <div className="mx-auto w-10/12 overflow-hidden">
               <div className="aspect-w-16 aspect-h-9 w-full">
                 <iframe
-                  title="ds"
+                  title="demo-video"
                   src="https://www.youtube.com/embed/r9jwGansp1E"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -31,11 +32,14 @@ const Demo = (props) => {
               try it out.
             </p>
             <a href="/">
-              <button
-                className={`flex mx-auto mt-6 text-white bg-${props.theme}-500 border-0 py-2 px-5 focus:outline-none hover:bg-${props.theme}-600 rounded`}
-              >
-                Feel the power
-              </button>
+              <Link to="login">
+                {' '}
+                <button
+                  className={`flex mx-auto mt-6 text-white bg-${props.theme}-500 border-0 py-2 px-5 focus:outline-none hover:bg-${props.theme}-600 rounded`}
+                >
+                  Feel the power
+                </button>
+              </Link>
             </a>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Content = (props) => {
   return (
@@ -16,13 +17,17 @@ const Content = (props) => {
               list. Source code is also available on github.
             </p>
             <div className="flex md:mt-4 mt-6">
-              <button
-                className={`inline-flex text-white bg-${props.theme}-500 border-0 py-1 px-4 focus:outline-none hover:bg-${props.theme}-600 rounded`}
-              >
-                Get started
-              </button>
+              <Link to="/login">
+                <button
+                  className={`inline-flex text-white bg-${props.theme}-500 border-0 py-1 px-4 focus:outline-none hover:bg-${props.theme}-600 rounded`}
+                >
+                  Get started
+                </button>
+              </Link>
               <a
-                href="https://github.com/"
+                href="https://github.com/deepakpixel/toodo"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`text-${props.theme}-500 inline-flex items-center ml-4`}
               >
                 Show recipe on Github

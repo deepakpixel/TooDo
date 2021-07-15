@@ -18,7 +18,6 @@ const Content = (props) => {
     let tempState = empty;
     if (!name.length) {
       tempState = { ...tempState, name: true };
-      console.log('error in name new state ', tempState);
     } else tempState = { ...tempState, name: false };
     if (
       !email.length ||
@@ -50,8 +49,6 @@ const Content = (props) => {
     Email:${email}%0A
     Message:${message}
     `;
-
-    // console.log(name.length);
   };
   return (
     <>

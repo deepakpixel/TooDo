@@ -7,7 +7,6 @@ import EditListModal from './EditListModal';
 // import { useEffect } from 'react';
 
 const Home = ({ lists, setLists }) => {
-  console.log('lists', lists);
   const [showEditListModal, setShowEditListModal] = useState(0); // 0:Nothing 1:New -1:Edit
 
   const [old, setOld] = useState({});

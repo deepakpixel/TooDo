@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import Hero from './components/website/Hero';
 import Footer from './components/website/Footer';
 import Content from './components/website/Content';
@@ -7,52 +7,45 @@ import Contact from './components/website/Contact';
 import Demo from './components/website/Demo';
 import NotFound from './components/NotFound';
 
+import { AuthProvider } from './contexts/AuthContext';
 import Login from './components/dashboard/Login';
 import Signup from './components/dashboard/Signup';
 import Dashboard from './components/dashboard/Dashboard';
+
+import PrivateRoute from './components/privateRoute';
+import PublicRoute from './components/publicRoute';
 
 import './css/style.css';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <Router>
       <div>
-        <Header loggedIn={loggedIn} />
-        <Switch>
-          <Route exact path="/">
-            <Hero />
-            <Content />
-            <Demo />
-            <Contact />
-          </Route>
+        <AuthProvider>
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              <Hero />
+            </Route>
 
-          <Route path="/login">
-            <Login setLoggedIn={setLoggedIn} />
-            <Content />
-            <Demo />
-            <Contact />
-          </Route>
+            <PublicRoute path="/login" component={Login} />
+            <PublicRoute path="/signup" component={Signup} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
 
-          <Route path="/signup">
-            <Signup />
-            <Content />
-            <Demo />
-            <Contact />
-          </Route>
+            <Route>
+              <NotFound />
+            </Route>
+          </Switch>
 
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-
-          <Route>
-            <NotFound />
-          </Route>
-        </Switch>
-        <Footer />
+          <Content />
+          <Demo />
+          <Contact />
+          <Footer />
+        </AuthProvider>
       </div>
     </Router>
   );

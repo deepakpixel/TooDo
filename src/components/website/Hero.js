@@ -24,9 +24,15 @@ const Hero = (props) => {
                 Get started
               </button>
             </Link>
-            <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-              Watch demo
-            </button>
+            <a
+              href="https://youtu.be/r9jwGansp1E"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
+                Watch demo
+              </button>
+            </a>
           </div>
         </div>
         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
