@@ -9,7 +9,6 @@ import Home from './home/Home';
 import Loading from '../Loading';
 
 const Dashboard = () => {
-  console.log('Dashboard rerenders');
   const [lists, setLists] = useState(null);
   const [isPending, setIsPending] = useState(false);
   // const [activeList, setActiveList] = useState(null);
@@ -21,14 +20,8 @@ const Dashboard = () => {
       .collection('users')
       .doc(currentUser.uid)
       .onSnapshot(async (querySnapshot) => {
-        // var cities = [];
-        // querySnapshot.forEach((doc) => {
-        //   cities.push(doc.data().name);
-        console.log(querySnapshot.data());
         let toodos = await methods.fetchLists(currentUser.uid);
         setLists(toodos);
-        // });
-        // console.log('Current cities in CA: ', cities.join(', '));
       });
     return (e) => unsubscribe();
   }, [currentUser.uid]);

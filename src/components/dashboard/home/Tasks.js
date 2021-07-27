@@ -1,7 +1,6 @@
 import Task from './Task';
 
 const Tasks = (props) => {
-  console.log('TASKS RRENDERED');
   const activeList = props.lists.find(
     (list) => list.id === props.activeList.id
   );

@@ -17,18 +17,12 @@ const ListView = (props) => {
       .collection('toodos')
       .doc(props.activeList.id)
       .onSnapshot(async (querySnapshot) => {
-        // var cities = [];
-        // querySnapshot.forEach((doc) => {
-        //   cities.push(doc.data().name);
-        console.log(querySnapshot.data());
         let toodos = await methods.fetchLists(currentUser.uid);
         setTimeout(() => {
           props.setLists(toodos);
           let index = toodos.findIndex((t) => t.id === props.activeList.id);
           props.setActiveList(toodos[index]);
         }, 100);
-        // });
-        // console.log('Current cities in CA: ', cities.join(', '));
       });
     return (e) => unsubscribe();
   }, [currentUser.uid]);

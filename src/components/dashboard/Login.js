@@ -37,34 +37,6 @@ const Login = (props) => {
       setLoading(false);
     }
   };
-  //   // auth with server
-
-  //   try {
-  //     setLoading(true);
-  //     await login(username, password);
-  //     history.push('/');
-  //   } catch {
-  //     Swal.fire(
-  //       'Invalid credentials',
-  //       'Username or password is incorrect',
-  //       'warning'
-  //     );
-  //   }
-
-  //   setLoading(false);
-
-  // if (username === 'test' && password === 'test') {
-  //   props.setLoggedIn(true);
-  //   history.push('/dashboard');
-  // } else {
-  //   Swal.fire(
-  //     'Invalid credentials',
-  //     'Username or password is incorrect',
-  //     'warning'
-  //   );
-  // }
-  // };
-  console.log(props);
 
   return (
     <>
