@@ -76,36 +76,35 @@ const ListName = (props) => {
     <>
       {shareModal && (
         <div className="transition-all z-50 fixed inset-0 flex justify-center h-screen items-center bg-gray-200  bg-opacity-50">
-          <div className="animate-slide-up p-6 bg-white rounded">
-            <input
-              disabled
-              tabIndex="1"
-              type="text"
-              placeholder="New task"
-              className={`focus:border-${props.list.theme}-800 border-${props.list.theme}-400 border-2 w-full text-xl font-semibold shadow-sm bg-transparent outline-none p-2 rounded mb-2 bg-${props.list.theme}-50 text-gray-900 placeholder-${props.list.theme}-400`}
-              autoFocus
-            />
+          <div className="w-1/2 animate-slide-up p-6 bg-white rounded">
+            <p className={`text-${props.list.theme}-800 mb-2`}>
+              Anyone with this link can join this TooDo list
+            </p>
             <p
-              onClick={(e) => {
-                navigator.clipboard.writeText(props.list.id);
+              className={`break-all resize-none no-scrollbar focus:border-${props.list.theme}-800 border-${props.list.theme}-400 border-2 w-full font-semibold shadow-sm bg-transparent outline-none p-1 rounded mb-2 bg-${props.list.theme}-50 text-gray-900 placeholder-${props.list.theme}-400`}
+            >
+              {'http://toodo.deepakjangra.com/invitation?list=' + props.list.id}
+            </p>
+            <p
+              onClick={async (e) => {
+                try {
+                  await navigator.clipboard.writeText(props.list.id);
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Copied to clipboard!',
+                  });
+                } catch (error) {
+                  Toast.fire({
+                    icon: 'warning',
+                    title: 'Unable to copy!',
+                  });
+                }
               }}
               className="text-xs font-bold hover:underline cursor-pointer "
             >
               Copy to clipboard
             </p>
             <div className="flex justify-end my-2">
-              <span>
-                {true && <Loading inline={true} height="24" width="24" />}
-                <button
-                  tabIndex="2"
-                  className={`inline-flex items-center bg-${props.list.theme}-500 border-0 py-1 px-3 focus:outline-none
-                focus:bg-${props.list.theme}-600
-                hover:bg-${props.list.theme}-600 rounded text-white  mx-2
-              cursor-pointer`}
-                >
-                  Add task
-                </button>
-              </span>
               <button
                 tabIndex="3"
                 className={`inline-flex items-center text-${props.list.theme}-500 border-0 py-1 px-3 focus:outline-none 
@@ -116,7 +115,7 @@ const ListName = (props) => {
                   setShareModal(false);
                 }}
               >
-                Cancel
+                Close
               </button>
             </div>
           </div>

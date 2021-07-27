@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import Swal from 'sweetalert2';
-import Icon from '../../Icons/Icon';
 import Task from './Task';
 
 const Tasks = (props) => {
