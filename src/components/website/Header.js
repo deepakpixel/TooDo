@@ -12,10 +12,26 @@ const Header = (props) => {
 
   const { currentUser, logout } = useAuth();
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer);
+      toast.addEventListener('mouseleave', Swal.resumeTimer);
+    },
+  });
+
   const logMeOut = async (e) => {
     try {
       setLoading(true);
       await logout();
+      Toast.fire({
+        icon: 'success',
+        title: 'You are now logged out!',
+      });
       // history.push('/login');
     } catch (error) {
       Swal.fire('Unable to logout', error.message, 'warning');
@@ -31,7 +47,7 @@ const Header = (props) => {
           className="flex title-font font-medium items-center text-gray-900"
         >
           <img
-            src="logo192.png"
+            src="/logo192.png"
             className={`w-10 h-10 text-white p-2 bg-${props.theme}-500 rounded-full`}
             alt="TooDo Logo"
           />

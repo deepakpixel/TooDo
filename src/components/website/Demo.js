@@ -31,16 +31,14 @@ const Demo = (props) => {
               the power recipe? Head over to Github Source Code. Or even better
               try it out.
             </p>
-            <a href="/">
-              <Link to="login">
-                {' '}
-                <button
-                  className={`flex mx-auto mt-6 text-white bg-${props.theme}-500 border-0 py-2 px-5 focus:outline-none hover:bg-${props.theme}-600 rounded`}
-                >
-                  Feel the power
-                </button>
-              </Link>
-            </a>
+            <Link to="login">
+              {' '}
+              <button
+                className={`flex mx-auto mt-6 text-white bg-${props.theme}-500 border-0 py-2 px-5 focus:outline-none hover:bg-${props.theme}-600 rounded`}
+              >
+                Feel the power
+              </button>
+            </Link>
           </div>
         </div>
       </div>
