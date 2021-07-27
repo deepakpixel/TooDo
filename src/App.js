@@ -11,9 +11,10 @@ import { AuthProvider } from './contexts/AuthContext';
 import Login from './components/dashboard/Login';
 import Signup from './components/dashboard/Signup';
 import Dashboard from './components/dashboard/Dashboard';
+import Invitation from './components/dashboard/Invitation';
 
-import PrivateRoute from './components/privateRoute';
-import PublicRoute from './components/publicRoute';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 
 import './css/style.css';
 
@@ -30,8 +31,13 @@ const App = () => {
           <Switch>
             <Route exact path="/">
               <Hero />
+              <Content />
+              <Demo />
+              <Contact />
+              <Footer />
             </Route>
 
+            <Route path="/invitation" component={Invitation} />
             <PublicRoute path="/login" component={Login} />
             <PublicRoute path="/signup" component={Signup} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
@@ -40,11 +46,6 @@ const App = () => {
               <NotFound />
             </Route>
           </Switch>
-
-          <Content />
-          <Demo />
-          <Contact />
-          <Footer />
         </AuthProvider>
       </div>
     </Router>

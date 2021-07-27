@@ -1,11 +1,19 @@
 import { React, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useAuth } from '../../contexts/AuthContext';
 import Loading from '../Loading';
 
+import Footer from '../website/Footer';
+import Content from '../website/Content';
+import Contact from '../website/Contact';
+import Demo from '../website/Demo';
+
 const Login = (props) => {
+  const query = new URLSearchParams(useLocation().search);
+  const nextUrl = query.get('next');
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -23,7 +31,7 @@ const Login = (props) => {
     try {
       setLoading(true);
       await login(username, password);
-      history.push('/dashboard');
+      nextUrl ? history.push(nextUrl) : history.push('/dashboard');
     } catch (error) {
       Swal.fire('Unable to login!', error.message, 'warning');
       setLoading(false);
@@ -56,6 +64,7 @@ const Login = (props) => {
   //   );
   // }
   // };
+  console.log(props);
 
   return (
     <>
@@ -131,6 +140,10 @@ const Login = (props) => {
           </div>
         </div>
       </section>
+      <Content />
+      <Demo />
+      <Contact />
+      <Footer />
     </>
   );
 };

@@ -1,12 +1,37 @@
-import Home from './home/Home';
-import Loading from '../Loading';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import app from '../../config/firebase';
+
+import { useAuth } from '../../contexts/AuthContext';
+import methods from '../../utils/methods';
+
+import Home from './home/Home';
+import Loading from '../Loading';
 
 const Dashboard = () => {
+  console.log('Dashboard rerenders');
   const [lists, setLists] = useState(null);
   const [isPending, setIsPending] = useState(false);
   // const [activeList, setActiveList] = useState(null);
+
+  const { currentUser } = useAuth();
+  useEffect(() => {
+    const unsubscribe = app
+      .firestore()
+      .collection('users')
+      .doc(currentUser.uid)
+      .onSnapshot(async (querySnapshot) => {
+        // var cities = [];
+        // querySnapshot.forEach((doc) => {
+        //   cities.push(doc.data().name);
+        console.log(querySnapshot.data());
+        let toodos = await methods.fetchLists(currentUser.uid);
+        setLists(toodos);
+        // });
+        // console.log('Current cities in CA: ', cities.join(', '));
+      });
+    return (e) => unsubscribe();
+  }, [currentUser.uid]);
 
   useEffect(() => {
     const Toast = Swal.mixin({
@@ -24,12 +49,8 @@ const Dashboard = () => {
     async function main() {
       setIsPending(true);
       try {
-        let res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lists`);
-
-        if (!res.ok) throw Error('Request failed!');
-        res.data = await res.json();
-
-        setLists(res.data);
+        let toodos = await methods.fetchLists(currentUser.uid);
+        setLists(toodos);
       } catch (error) {
         Toast.fire({
           icon: 'warning',
@@ -39,7 +60,7 @@ const Dashboard = () => {
       setIsPending(false);
     }
     main();
-  }, []);
+  }, [currentUser]);
 
   // useEffect(() => {
   //   if (lists == null) return;
