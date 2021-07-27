@@ -1,16 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 
 import Loading from '../../Loading';
+import methods from '../../../utils/methods';
+import { useAuth } from '../../../contexts/AuthContext';
 
 const EditListModal = (props) => {
   const colors = ['indigo', 'yellow', 'red', 'purple', 'pink', 'blue', 'green'];
   let color = Math.floor(Math.random() * colors.length);
 
-  const [theme, setTheme] = useState(props.old.color || colors[color]);
-  const [listName, setListName] = useState(props.old.listName || '');
+  const [theme, setTheme] = useState(props.old.theme || colors[color]);
+  const [listName, setListName] = useState(props.old.name || '');
   const [description, setDescription] = useState(props.old.description || '');
   const [loading, setLoading] = useState(false);
+
+  const { currentUser } = useAuth();
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape' || e.key === 'Esc') props.setShowEditListModal(0);
+    };
+
+    window.addEventListener('keyup', handleEsc);
+    return () => {
+      window.removeEventListener('keyup', handleEsc);
+    };
+  }, [props]);
 
   const Toast = Swal.mixin({
     toast: true,
@@ -33,32 +48,23 @@ const EditListModal = (props) => {
       }
 
       if (props.old.id) {
-        let tempLists = Array.from(props.lists);
-
-        let newList = {
-          listName: listName.trim(),
-          description: description.trim() || 'No description',
-          color: theme,
-          createdAt: Date.now(),
-        };
-
-        let res = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/lists/${props.old.id}`,
-          {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newList),
-          }
-        );
-
-        if (!res.ok) throw Error('Request failed!');
-        res.data = await res.json();
-
+        // Update item
+        // let tempLists = Array.from(props.lists);
+        let tempLists = props.lists;
         let index = tempLists.findIndex((x) => x.id === props.old.id);
-
         if (index === -1) throw Error('Something went wrong!');
 
-        tempLists[index] = res.data;
+        let updatedList = {
+          name: listName.trim(),
+          description: description.trim() || 'No description',
+          theme: theme,
+          createdAt: Date.now(),
+          id: props.old.id,
+        };
+
+        await methods.updateList(updatedList);
+
+        tempLists[index] = { ...tempLists[index], ...updatedList };
 
         props.setLists(tempLists);
         props.setShowEditListModal(0);
@@ -68,22 +74,17 @@ const EditListModal = (props) => {
           title: 'List updated!',
         });
       } else {
+        // create new list
         let newList = {
-          listName: listName.trim(),
+          name: listName.trim(),
           description: description.trim() || 'No description',
-          color: theme,
+          theme: theme,
           createdAt: Date.now(),
         };
 
-        let res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lists`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newList),
-        });
-        if (!res.ok) throw Error('Request failed!');
-        res.data = await res.json();
+        newList = await methods.createList(newList, currentUser);
 
-        props.setLists([...props.lists, res.data]);
+        props.setLists([...props.lists, newList]);
         props.setShowEditListModal(0);
 
         Toast.fire({
@@ -125,6 +126,7 @@ const EditListModal = (props) => {
         <div className="flex flex-col px-6 py-5 bg-gray-50">
           <p className=" font-semibold text-gray-700">List name</p>
           <input
+            maxLength="32"
             value={listName}
             autoFocus
             tabIndex="1"
@@ -195,6 +197,7 @@ const EditListModal = (props) => {
 
           <p className="mb-2 font-semibold text-gray-700">Description</p>
           <textarea
+            maxLength="10"
             onFocus={(e) =>
               e.target.setSelectionRange(
                 e.target.value.length,
