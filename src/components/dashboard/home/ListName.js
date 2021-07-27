@@ -88,7 +88,7 @@ const ListName = (props) => {
             <p
               onClick={async (e) => {
                 try {
-                  await navigator.clipboard.writeText(props.list.id);
+                  await navigator.clipboard.writeText('http://toodo.deepakjangra.com/invitation?list=' + props.list.id);
                   Toast.fire({
                     icon: 'success',
                     title: 'Copied to clipboard!',
