@@ -76,7 +76,7 @@ const ListName = (props) => {
     <>
       {shareModal && (
         <div className="transition-all z-50 fixed inset-0 flex justify-center h-screen items-center bg-gray-200  bg-opacity-50">
-          <div className="w-1/2 animate-slide-up p-6 bg-white rounded">
+          <div className="m-10 sm:w-1/2 animate-slide-up p-6 bg-white rounded">
             <p className={`text-${props.list.theme}-800 mb-2`}>
               Anyone with this link can join this TooDo list
             </p>
@@ -88,7 +88,10 @@ const ListName = (props) => {
             <p
               onClick={async (e) => {
                 try {
-                  await navigator.clipboard.writeText('http://toodo.deepakjangra.com/invitation?list=' + props.list.id);
+                  await navigator.clipboard.writeText(
+                    'http://toodo.deepakjangra.com/invitation?list=' +
+                      props.list.id
+                  );
                   Toast.fire({
                     icon: 'success',
                     title: 'Copied to clipboard!',

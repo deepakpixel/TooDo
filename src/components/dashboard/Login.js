@@ -31,7 +31,8 @@ const Login = (props) => {
     try {
       setLoading(true);
       await login(username, password);
-      nextUrl ? history.push(nextUrl) : history.push('/dashboard');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.push(nextUrl || '/dashboard');
     } catch (error) {
       Swal.fire('Unable to login!', error.message, 'warning');
       setLoading(false);
@@ -56,7 +57,7 @@ const Login = (props) => {
             <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
               <span className={`text-${props.theme}-500`}>Login </span>
               <Link
-                to="/signup"
+                to={`/signup?next=${nextUrl}`}
                 className={`cursor-pointer text-gray-400 hover:text-${props.theme}-500`}
               >
                 Sign up
@@ -105,7 +106,7 @@ const Login = (props) => {
             </form>
             <p className="text-xs text-gray-500 mt-3">
               Don't have an account?{' '}
-              <Link to="/signup" className="text-indigo-500">
+              <Link to={`/signup?next=${nextUrl}`} className="text-indigo-500">
                 Create account
               </Link>
             </p>

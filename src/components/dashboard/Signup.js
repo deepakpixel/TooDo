@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Loading from '../Loading';
 import { useAuth } from '../../contexts/AuthContext';
@@ -14,6 +14,9 @@ const Login = (props) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  const query = new URLSearchParams(useLocation().search);
+  const nextUrl = query.get('next');
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -36,7 +39,8 @@ const Login = (props) => {
     try {
       setLoading(true);
       await signup(username, password);
-      history.push('/dashboard');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.push(nextUrl || '/dashboard');
     } catch (error) {
       Swal.fire('Failed to signup!', error.message, 'warning');
       setLoading(false);
@@ -48,7 +52,7 @@ const Login = (props) => {
         <div className="container px-5 py-10 mx-auto flex flex-wrap items-center">
           <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
             <h1 className="title-font font-medium text-3xl text-gray-900">
-              Managing team tasks have never been this easier
+              Managing team tasks has never been this easier
             </h1>
             <p className="leading-relaxed mt-4">
               Tired of making to-do lists for your team? Forget to update your
@@ -59,7 +63,7 @@ const Login = (props) => {
           <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
             <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
               <Link
-                to="/login"
+                to={`/login?next=${nextUrl}`}
                 className={`cursor-pointer text-gray-400 hover:text-${props.theme}-500`}
               >
                 Login
@@ -126,7 +130,7 @@ const Login = (props) => {
             </form>
             <p className="text-xs text-gray-500 mt-3">
               Already have an account?{' '}
-              <Link to="/signup" className="text-indigo-500">
+              <Link to={`/login?next=${nextUrl}`} className="text-indigo-500">
                 Login
               </Link>
             </p>

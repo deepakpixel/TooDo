@@ -1,10 +1,5 @@
-// import { useState } from 'react';
-import Hero from './components/website/Hero';
-import Footer from './components/website/Footer';
-import Content from './components/website/Content';
 import Header from './components/website/Header';
-import Contact from './components/website/Contact';
-import Demo from './components/website/Demo';
+import Landing from './components/dashboard/Landing';
 import NotFound from './components/NotFound';
 
 import { AuthProvider } from './contexts/AuthContext';
@@ -12,7 +7,6 @@ import Login from './components/dashboard/Login';
 import Signup from './components/dashboard/Signup';
 import Dashboard from './components/dashboard/Dashboard';
 import Invitation from './components/dashboard/Invitation';
-
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 
@@ -29,14 +23,7 @@ const App = () => {
         <AuthProvider>
           <Header />
           <Switch>
-            <Route exact path="/">
-              <Hero />
-              <Content />
-              <Demo />
-              <Contact />
-              <Footer />
-            </Route>
-
+            <PublicRoute exact path="/" component={Landing} />
             <Route path="/invitation" component={Invitation} />
             <PublicRoute path="/login" component={Login} />
             <PublicRoute path="/signup" component={Signup} />
