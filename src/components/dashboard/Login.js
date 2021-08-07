@@ -45,7 +45,7 @@ const Login = (props) => {
         <div className="container px-5 py-10 mx-auto flex flex-wrap items-center">
           <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
             <h1 className="title-font font-medium text-3xl text-gray-900">
-              Managing team tasks have never been this easier
+              Managing team tasks has never been this easier
             </h1>
             <p className="leading-relaxed mt-4">
               Tired of making to-do lists for your team? Forget to update your
