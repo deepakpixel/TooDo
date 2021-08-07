@@ -49,7 +49,10 @@ const Login = (props) => {
   return (
     <>
       <section className="text-gray-600 body-font">
-        <div className="container px-5 py-10 mx-auto flex flex-wrap items-center">
+        <div
+          className="container px-5 py-10 mx-aut
+        o flex flex-wrap items-center"
+        >
           <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
             <h1 className="title-font font-medium text-3xl text-gray-900">
               Managing team tasks has never been this easier
@@ -63,7 +66,7 @@ const Login = (props) => {
           <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
             <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
               <Link
-                to={`/login?next=${nextUrl}`}
+                to={`/login${nextUrl ? '?next=' + nextUrl : ''}`}
                 className={`cursor-pointer text-gray-400 hover:text-${props.theme}-500`}
               >
                 Login
@@ -130,7 +133,10 @@ const Login = (props) => {
             </form>
             <p className="text-xs text-gray-500 mt-3">
               Already have an account?{' '}
-              <Link to={`/login?next=${nextUrl}`} className="text-indigo-500">
+              <Link
+                to={`/login${nextUrl ? '?next=' + nextUrl : ''}`}
+                className="text-indigo-500"
+              >
                 Login
               </Link>
             </p>

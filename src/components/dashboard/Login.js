@@ -57,7 +57,7 @@ const Login = (props) => {
             <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
               <span className={`text-${props.theme}-500`}>Login </span>
               <Link
-                to={`/signup?next=${nextUrl}`}
+                to={`/signup${nextUrl ? '?next=' + nextUrl : ''}`}
                 className={`cursor-pointer text-gray-400 hover:text-${props.theme}-500`}
               >
                 Sign up
@@ -106,7 +106,10 @@ const Login = (props) => {
             </form>
             <p className="text-xs text-gray-500 mt-3">
               Don't have an account?{' '}
-              <Link to={`/signup?next=${nextUrl}`} className="text-indigo-500">
+              <Link
+                to={`/signup${nextUrl ? '?next=' + nextUrl : ''}`}
+                className="text-indigo-500"
+              >
                 Create account
               </Link>
             </p>
