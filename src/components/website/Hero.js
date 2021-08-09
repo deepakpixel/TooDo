@@ -25,7 +25,7 @@ const Hero = (props) => {
               </button>
             </Link>
             <a
-              href="https://youtu.be/yqWX86uT5jM"
+              href="https://youtu.be/CsawSG3qZ8Y"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -16,7 +16,7 @@ const Demo = (props) => {
               <div className="aspect-w-16 aspect-h-9 w-full">
                 <iframe
                   title="demo-video"
-                  src="https://www.youtube.com/embed/yqWX86uT5jM"
+                  src="https://www.youtube.com/embed/CsawSG3qZ8Y"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -24,7 +24,7 @@ const Demo = (props) => {
               </div>
             </div>
             <h2 className="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">
-              TooDo in action <span className="text-xs">* coming soon</span>
+              TooDo in action
             </h2>
             <p className="leading-relaxed text-base">
               Feel the power of TooDo just buy watcching the demo. Want to know
