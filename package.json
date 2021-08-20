@@ -7,8 +7,8 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "autoprefixer": "^10.3.1",
     "firebase": "^8.7.1",
-    "postcss": "^8.3.5",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.2",
@@ -18,13 +18,12 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "dev": "tailwind build -i ./src/css/raw.css -o ./src/css/style.css && react-scripts start",
-    "start": "react-scripts start",
-    "build:css": "tailwind build -i ./src/css/raw.css -o ./src/css/style.css",
-    "build": "tailwind build -i ./src/css/raw.css -o ./src/css/style.css && react-scripts build",
+    "dev": "react-scripts start",
+    "start": "tailwind build ./src/css/raw.css -o ./src/css/style.css && react-scripts start",
+    "build:css": "NODE_ENV=production npx tailwindcss -i ./src/css/raw.css -o ./src/css/style.css",
+    "build": "NODE_ENV=production npx tailwindcss -i ./src/css/raw.css -o ./src/css/style.css --minify && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "node json-server.js"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +44,8 @@
     ]
   },
   "devDependencies": {
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1",
     "tailwindcss": "^2.2.4"
   }
 }
