@@ -27,7 +27,7 @@ const Demo = (props) => {
               TooDo in action
             </h2>
             <p className="leading-relaxed text-base">
-              Feel the power of TooDo just buy watcching the demo. Want to know
+              Feel the power of TooDo just buy watching the demo. Want to know
               the power recipe? Head over to Github Source Code. Or even better
               try it out.
             </p>
