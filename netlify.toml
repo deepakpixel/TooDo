@@ -2,3 +2,15 @@
   from = "/*"
   to = "/index.html"
   status = 200
+[build]
+  publish = "build/"
+  command = "CI=false yarn build"
+[build.processing]
+  skip_processing = false
+[build.processing.css]
+  bundle = true
+  minify = false
+[build.processing.js]
+  minify = false
+[build.processing.images]
+  compress = true
