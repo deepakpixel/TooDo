@@ -25,8 +25,7 @@ TooDo is live - https://toodo.deepakjangra.com
 
 ## Demo
 
-Checkout this demo video of TooDo
-
+Checkout this [DEMO VIDEO](https://www.github.com/deepakpixel) of TooDo
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/CsawSG3qZ8Y/0.jpg)](http://www.youtube.com/watch?v=CsawSG3qZ8Y 'TooDo Demo')
 
 ## Authors
