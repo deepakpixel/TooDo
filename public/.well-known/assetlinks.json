@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "wiki.deepak.toodo.twa",
+      "sha256_cert_fingerprints": [
+        "74:B0:1C:2F:57:0B:5E:6C:7A:ED:81:79:0D:80:42:72:18:D5:F9:38:07:90:62:A0:0A:67:2D:72:7C:CE:C1:47"
+      ]
+    }
+  }
+]
