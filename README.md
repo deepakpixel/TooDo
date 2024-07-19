@@ -5,7 +5,7 @@
 
 TooDo is a collaborative and powerful to-do list app built for productive teams.
 
-TooDo is live - https://toodo.deepakjangra.com
+TooDo is live - https://toodo.deepak.wiki
 
 ## Features
 
@@ -39,4 +39,4 @@ Checkout this [DEMO VIDEO](http://www.youtube.com/watch?v=CsawSG3qZ8Y) of TooDo
 
 ## Support
 
-For queries or suggestions, email hi@deepakjangra.com.
+For queries or suggestions, email hi@deepak.wiki

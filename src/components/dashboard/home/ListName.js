@@ -83,13 +83,13 @@ const ListName = (props) => {
             <p
               className={`break-all resize-none no-scrollbar focus:border-${props.list.theme}-800 border-${props.list.theme}-400 border-2 w-full font-semibold shadow-sm bg-transparent outline-none p-1 rounded mb-2 bg-${props.list.theme}-50 text-gray-900 placeholder-${props.list.theme}-400`}
             >
-              {'http://toodo.deepakjangra.com/invitation?list=' + props.list.id}
+              {'http://toodo.deepak.wiki/invitation?list=' + props.list.id}
             </p>
             <p
               onClick={async (e) => {
                 try {
                   await navigator.clipboard.writeText(
-                    'http://toodo.deepakjangra.com/invitation?list=' +
+                    'http://toodo.deepak.wiki/invitation?list=' +
                       props.list.id
                   );
                   Toast.fire({
