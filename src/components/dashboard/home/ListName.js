@@ -30,9 +30,9 @@ const ListName = (props) => {
 
       await methods.deleteList(list.id, currentUser);
 
+      props.setActiveList({});
       props.setLists(tempLists);
       props.setShowEditListModal(0);
-      props.setActiveList({});
       Toast.fire({
         icon: 'success',
         title: 'List deleted!',
