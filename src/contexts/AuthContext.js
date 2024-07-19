@@ -23,6 +23,16 @@ export function AuthProvider({ children }) {
     });
   }
 
+  async function anonymousSignup() {
+    let cred = await auth.signInAnonymously();
+    const Users = app.firestore().collection("users");
+    await Users.doc(cred.user.uid).set({
+      name: methods.generateUsername(),
+      toodos: [],
+      createdAt: new Date(),
+    });
+  }
+
   function login(email, password) {
     return auth.signInWithEmailAndPassword(email, password);
   }
@@ -56,6 +66,7 @@ export function AuthProvider({ children }) {
     currentUser,
     login,
     signup,
+    anonymousSignup,
     logout,
     resetPassword,
     updateEmail,

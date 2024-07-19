@@ -21,16 +21,22 @@ const Login = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, anonymousSignup } = useAuth();
 
   let history = useHistory();
 
   let logMeIn = async (e) => {
     e.preventDefault();
+    logIn();
+  };
 
+  let logIn = async (anon=false) => {
     try {
       setLoading(true);
-      await login(username, password);
+      if (anon)
+        await anonymousSignup();
+      else
+        await login(username, password)
       window.scrollTo({ top: 0, behavior: 'smooth' });
       history.push(nextUrl || '/dashboard');
     } catch (error) {
@@ -111,6 +117,18 @@ const Login = (props) => {
                 className="text-indigo-500"
               >
                 Create account
+              </Link>
+            </p>
+            <p className="text-xs text-gray-500 mt-3">
+              OR{" "}
+              <Link
+                onClick={(e) => {
+                  e.preventDefault();
+                  logIn(true);
+                }}
+                className="text-indigo-500"
+              >
+                Login as guest user
               </Link>
             </p>
           </div>
