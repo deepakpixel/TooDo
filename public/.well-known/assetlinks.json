@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "wiki.deepak.toodo.twa",
       "sha256_cert_fingerprints": [
-        "74:B0:1C:2F:57:0B:5E:6C:7A:ED:81:79:0D:80:42:72:18:D5:F9:38:07:90:62:A0:0A:67:2D:72:7C:CE:C1:47"
+        "74:B0:1C:2F:57:0B:5E:6C:7A:ED:81:79:0D:80:42:72:18:D5:F9:38:07:90:62:A0:0A:67:2D:72:7C:CE:C1:47",
+        "61:2F:00:F9:39:D0:E2:03:8B:41:60:AF:5F:CC:A5:4E:9E:B2:62:9F:50:7F:0F:EE:25:0E:2F:97:D7:A7:A9:29"
       ]
     }
   }
